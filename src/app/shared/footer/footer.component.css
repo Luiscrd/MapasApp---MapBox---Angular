@@ -1,0 +1,28 @@
+.footer{
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 6;
+  background-color: #237e10;
+  color: white;
+  padding: 20px 2%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.by-footer{
+  position: relative;
+  font-weight: bold;
+}
+
+.logo-liked{
+  height: 30px;
+  transition: 0.5s;
+}
+
+.logo-liked:hover{
+  opacity: 0.5;
+}

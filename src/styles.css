@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+body{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.text-lc{
+  color: #237e10;
+}
+
+.bg-lc{
+  background-color: #237e10;
+}
+
+.color-lc{
+  color: #237e10;
+}

@@ -1,0 +1,6 @@
+app-menu {
+  position: absolute;
+  top: 132px;
+  left: 40px;
+  z-index: 5;
+}

@@ -1,0 +1,18 @@
+<div class="row caja-prop">
+  <div class="col-12">
+    <h1>Lugares de interés: Cullera</h1>
+    <hr>
+    <div class="row">
+      <div class="col-4" *ngFor="let lugar of lugares">
+        <div class="card mb-4">
+          <app-mini-mapa [lngLat]="lugar.lngLat" class="card-img-top"></app-mini-mapa>
+          <div class="card-body">
+            <h5 class="card-title">{{ lugar.titulo }}</h5>
+            <p class="card-text">{{ lugar.descripcion }}</p>
+            <a href="#" class="btn btn-primary">Ir al mapa</a>
+          </div>
+        </div>
+      </div>
+  </div>
+
+</div>
