@@ -29,6 +29,10 @@ export class MenuComponent {
     ruta: 'propiedades',
     nombre: 'Propiedades'
   },
+  {
+    ruta: 'searchroutes',
+    nombre: 'Search Rutes'
+  },
  ]
 
 }

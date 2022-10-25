@@ -4,6 +4,11 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
+// if ( !navigator.geolocation ) {
+//   alert('El navegador no soorta la geolocalizacioón')
+//   throw new Error('El navegador no soorta la geolocalizacioón')
+// }
+
 if (environment.production) {
   enableProdMode();
 }

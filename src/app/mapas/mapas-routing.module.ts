@@ -4,6 +4,7 @@ import { FullScreenComponent } from './pages/full-screen/full-screen.component';
 import { ZoomRangeComponent } from './pages/zoom-range/zoom-range.component';
 import { MarcadoresComponent } from './pages/marcadores/marcadores.component';
 import { PropiedadesComponent } from './pages/propiedades/propiedades.component';
+import { SearchRutasComponent } from './pages/search-rutas/search-rutas.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
       {
         path: 'propiedades',
         component: PropiedadesComponent
+      },
+      {
+        path: 'searchroutes',
+        component: SearchRutasComponent
       },
       {
         path: '**',
