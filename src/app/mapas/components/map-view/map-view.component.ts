@@ -19,7 +19,6 @@ export class MapViewComponent implements AfterViewInit {
   ngAfterViewInit(): void {
 
     if ( !this.placesService.userLocation ) throw new Error('No hay placesService.userLocation')
-    console.log(this.placesService.userLocation);
 
     const map = new mapboxgl.Map({
       container: 'mapa',

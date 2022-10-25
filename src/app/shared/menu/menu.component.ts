@@ -18,6 +18,10 @@ export class MenuComponent {
     nombre: 'FullScreen'
   },
   {
+    ruta: 'searchroutes',
+    nombre: 'Buscar Rutas'
+  },
+  {
     ruta: 'zoomrange',
     nombre: 'Zoom Range'
   },
@@ -28,10 +32,6 @@ export class MenuComponent {
   {
     ruta: 'propiedades',
     nombre: 'Propiedades'
-  },
-  {
-    ruta: 'searchroutes',
-    nombre: 'Search Rutes'
   },
  ]
 
