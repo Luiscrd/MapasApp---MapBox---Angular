@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PlacesService } from '../../services/places.service';
+import { MapService } from '../../services/map.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -12,7 +13,8 @@ export class SearchBarComponent  {
 
   constructor(
 
-    private placesService: PlacesService
+    private placesService: PlacesService,
+    private mapService: MapService
 
   ) { }
 
@@ -24,6 +26,8 @@ export class SearchBarComponent  {
     this.debounceTimer = setTimeout(() => {
 
       this.placesService.getPlacesByQuery( query );
+
+      this.mapService.deleteRoute();
 
     }, 500 );
   }

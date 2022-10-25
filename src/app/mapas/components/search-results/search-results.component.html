@@ -11,6 +11,6 @@
   [class.active]="place.id === selectedId">
     <h6>{{ place.text_es }}</h6>
     <p>{{ place.place_name }}</p>
-    <button class="btn btn-sm btn-outline-primary">Direciones</button>
+    <button class="btn btn-sm btn-outline-primary" (click)="getDirections( place )">Ver Ruta</button>
   </li>
 </ul>

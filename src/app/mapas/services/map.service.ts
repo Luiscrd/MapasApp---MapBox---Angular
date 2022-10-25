@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { LngLatBounds, LngLatLike, Map, Marker, Popup } from 'mapbox-gl';
+import { AnySourceData, LngLatBounds, LngLatLike, Map, Marker, Popup } from 'mapbox-gl';
 import { Feature } from '../interfaces/places';
+import { DirectionApiClient } from '../api/DirectionApiClient';
+import { DirectionResponse, Route } from '../interfaces/directions';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +18,12 @@ export class MapService {
     return !!this.map;
 
   }
+
+  constructor(
+
+    private directionsApi: DirectionApiClient
+
+  ){ }
 
   setMap( map: Map ) {
 
@@ -74,6 +82,89 @@ export class MapService {
     this.map.fitBounds(bounds, {
       padding: 350
     });
+
+  }
+
+  getRouteBetweenPoints( start: [ number, number ], end: [ number, number ] ) {
+
+    this.directionsApi.get<DirectionResponse>(`/${ start.join(',') };${ end.join(',') }`)
+    .subscribe( resp => this.drawPoliline( resp.routes[0] ) )
+
+  }
+
+  private drawPoliline( route: Route ) {
+
+    if ( !this.map ) throw Error('El mapa no está inicializado');
+
+    console.log({
+      Kms: route.distance / 1000,
+      duration: route.duration / 60
+    });
+
+    const coords = route.geometry.coordinates;
+
+    const bounds = new LngLatBounds();
+
+    coords.forEach( ([ lng, lat ]) => bounds.extend( [ lng, lat ] ));
+
+    this.map.fitBounds(bounds, {
+      padding: 350
+    });
+
+    const sourceData: AnySourceData = {
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: [
+          {
+            type: 'Feature',
+            properties: {},
+            geometry: {
+              type: 'LineString',
+              coordinates: coords
+            }
+          }
+        ]
+      }
+    };
+
+    if ( this.map.getLayer('RouteString') ) {
+
+      this.map.removeLayer('RouteString');
+
+      this.map.removeSource('RouteString');
+
+    }
+
+    this.map.addSource('RouteString', sourceData );
+
+    this.map.addLayer({
+      id: 'RouteString',
+      type: 'line',
+      source: 'RouteString',
+      layout: {
+        "line-cap": 'round',
+        "line-join": 'round',
+      },
+      paint: {
+        "line-color": '#237e10',
+        "line-width": 3
+      }
+    });
+
+  }
+
+  deleteRoute() {
+
+    if ( !this.map ) throw Error('El mapa no está inicializado');
+
+    if ( this.map.getLayer('RouteString') ) {
+
+      this.map.removeLayer('RouteString');
+
+      this.map.removeSource('RouteString');
+
+    }
 
   }
 
